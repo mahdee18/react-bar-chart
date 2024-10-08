@@ -61,23 +61,25 @@ const BarChart = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       {chartData.labels ? (
-        <Bar
-          data={chartData}
-          options={{
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top',
+        <div className="w-full max-w-4xl p-4 bg-white shadow-lg rounded-lg">
+          <Bar
+            data={chartData}
+            options={{
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Data Load From API',
+                },
               },
-              title: {
-                display: true,
-                text: 'Data Load From API',
-              },
-            },
-          }}
-        />
+            }}
+          />
+        </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
           <Bars
@@ -86,8 +88,9 @@ const BarChart = () => {
             radius="9"
             color="green"
             ariaLabel="loading"
+            wrapperClass="mt-4"
           />
-          <p>Loading data, please wait...</p>
+          <p className="mt-4 text-gray-600">Loading data, please wait...</p>
         </div>
       )}
     </div>
