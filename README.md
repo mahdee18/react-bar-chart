@@ -1,8 +1,12 @@
-# React + Vite
+# React Bar Chart Task By AAk Tele-Science
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that parses and visualizes data from an API endpoint using Chart.js, with a responsive design and loading spinner for enhanced user experience.
 
-Currently, two official plugins are available:
+## Features
+- **Data Parsing**: Fetches and processes API data.
+- **Bar Chart**: Displays data in a dynamic bar chart using Chart.js.
+- **Responsive**: Adapts to various screen sizes.
+- **Loading Spinner**: Indicates data fetching status.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Demo
+View the live demo [here](https://react-bar-chart-mu.vercel.app).
