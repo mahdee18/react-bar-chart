@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { Bars } from 'react-loader-spinner';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -78,7 +79,16 @@ const BarChart = () => {
           }}
         />
       ) : (
-        <h2>Loading...</h2>
+        <div className="flex flex-col items-center justify-center">
+          <Bars
+            height="80"
+            width="80"
+            radius="9"
+            color="green"
+            ariaLabel="loading"
+          />
+          <p>Loading data, please wait...</p>
+        </div>
       )}
     </div>
   );
