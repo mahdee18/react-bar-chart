@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -35,7 +36,7 @@ const BarChart = () => {
         Object.values(month).forEach((dates) => {
           dates.forEach((entry) => {
             const [date, value] = Object.entries(entry)[0];
-            labels.push(date.split(',')[0]); // Extract the date
+            labels.push(date.split(',')[0]);
             values.push(value);
           });
         });
@@ -60,7 +61,25 @@ const BarChart = () => {
 
   return (
     <div>
-      <h1>Bar Chart Component</h1>
+      {chartData.labels ? (
+        <Bar
+          data={chartData}
+          options={{
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Data Load From API',
+              },
+            },
+          }}
+        />
+      ) : (
+        <h2>Loading...</h2>
+      )}
     </div>
   );
 };
