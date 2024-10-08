@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BarChart = () => {
+  const [chartData, setChartData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +21,38 @@ const BarChart = () => {
         }
 
         const data = await response.json();
-        console.log(data);
+        parseData(data);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
+    };
+
+    const parseData = (data) => {
+      const labels = [];
+      const values = [];
+
+      data[0]['2024'].forEach((month) => {
+        Object.values(month).forEach((dates) => {
+          dates.forEach((entry) => {
+            const [date, value] = Object.entries(entry)[0];
+            labels.push(date.split(',')[0]); // Extract the date
+            values.push(value);
+          });
+        });
+      });
+
+      setChartData({
+        labels,
+        datasets: [
+          {
+            label: 'Values',
+            data: values,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+        ],
+      });
     };
 
     fetchData();
